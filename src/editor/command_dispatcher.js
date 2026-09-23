@@ -39,6 +39,9 @@ const COMMANDS = [
   "setFormatHeadingLarge",
   "setFormatHeadingMedium",
   "setFormatHeadingSmall",
+  "setFormatHeadingFour",
+  "setFormatHeadingFive",
+  "setFormatHeadingSix",
   "setFormatParagraph",
   "applyHeadingFormat",
   "clearFormatting",
@@ -242,6 +245,18 @@ export class CommandDispatcher {
 
   dispatchSetFormatHeadingSmall() {
     this.#applyConfiguredHeadingFormat(2)
+  }
+
+  dispatchSetFormatHeadingFour() {
+    this.#applyConfiguredHeadingFormat(3)
+  }
+
+  dispatchSetFormatHeadingFive() {
+    this.#applyConfiguredHeadingFormat(4)
+  }
+
+  dispatchSetFormatHeadingSix() {
+    this.#applyConfiguredHeadingFormat(5)
   }
 
   dispatchSetFormatParagraph() {

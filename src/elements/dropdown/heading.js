@@ -6,7 +6,10 @@ const HEADING_BUTTON_SELECTOR = "button.lexxy-heading-button"
 const HEADING_PRESETS = [
   { label: "Large Heading", name: "heading-large", command: "setFormatHeadingLarge" },
   { label: "Medium Heading", name: "heading-medium", command: "setFormatHeadingMedium" },
-  { label: "Small Heading", name: "heading-small", command: "setFormatHeadingSmall" }
+  { label: "Small Heading", name: "heading-small", command: "setFormatHeadingSmall" },
+  { label: "Heading Four", name: "heading-four", command: "setFormatHeadingFour" },
+  { label: "Heading Five", name: "heading-five", command: "setFormatHeadingFive" },
+  { label: "Heading Six", name: "heading-six", command: "setFormatHeadingSix" }
 ]
 
 export class HeadingDropdown extends HTMLElement {
