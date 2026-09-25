@@ -226,6 +226,27 @@ export default class Clipboard {
       && Array.from(paragraph.childNodes).every((node) => node.nodeType === Node.TEXT_NODE || node.nodeName === "BR")
   }
 
+  #handleGdocsPaste(text) {
+    const blockTagNames = [ "P", "OL", "UL" ]
+    const parser = new DOMParser()
+    const doc = parser.parseFromString(text, "text/html")
+
+    function isBlockElement(element) {
+      return element && blockTagNames.includes(element.tagName)
+    }
+
+    Array.from(doc.querySelectorAll("br"))
+        .filter(
+            (br) =>
+                isBlockElement(br.previousElementSibling) &&
+                isBlockElement(br.nextElementSibling),
+        )
+        .forEach((br) => {
+          br.parentNode?.removeChild(br)
+        })
+    return doc.documentElement.innerHTML
+  }
+
   #pasteRichText(clipboardData) {
     this.editor.update(() => {
       const selection = $getSelection()
@@ -245,7 +266,8 @@ export default class Clipboard {
     }
 
     if (html && !this.#isLexicalClipboardData(clipboardData)) {
-      this.contents.insertHtml(html, { tag: PASTE_TAG })
+      const handledHtml = this.#handleGdocsPaste(html)
+      this.contents.insertHtml(handledHtml, { tag: PASTE_TAG })
       return true
     }
 
