@@ -227,9 +227,14 @@ export default class Clipboard {
   }
 
   #handleGdocsPaste(text) {
-    const blockTagNames = [ "P", "OL", "UL" ]
     const parser = new DOMParser()
     const doc = parser.parseFromString(text, "text/html")
+
+    if (!doc.querySelector("[id^=\"docs-internal-guid-\"]")) {
+      return text
+    }
+
+    const blockTagNames = [ "P", "OL", "UL" ]
 
     function isBlockElement(element) {
       return element && blockTagNames.includes(element.tagName)
