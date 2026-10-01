@@ -99,7 +99,7 @@ const ALLOWED_HTML_ATTRIBUTES = [ "alt", "class", "contenteditable", "href", "sr
 // place while it loads; nothing else here does.
 const DEFAULT_TAG_ATTRIBUTES = { img: [ "width", "height" ] }
 
-const ALLOWED_STYLE_PROPERTIES = [ "color", "background-color" ]
+const ALLOWED_STYLE_PROPERTIES = []
 
 function styleFilterHook(_currentNode, hookEvent) {
   if (hookEvent.attrName === "style" && hookEvent.attrValue) {
